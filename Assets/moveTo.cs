@@ -16,7 +16,6 @@ public class moveTo : MonoBehaviour {
     }
     public void moveIt(RaycastHit hi)
     {
-        Debug.Log("I like to move it move it");
         t.position = new Vector3(hi.point.x, hi.point.y + 1.5f, hi.point.z);
     }
 }
