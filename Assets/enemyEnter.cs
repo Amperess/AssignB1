@@ -21,4 +21,8 @@ public class enemyEnter : MonoBehaviour {
             camera.GetComponent<director>().relocate(tag);
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        other.tag = tag;
+    }
 }

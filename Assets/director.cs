@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class director : MonoBehaviour
     int selec = 0; //0 is unselected, 1 is unit, 2 is block1, 3 is block2
     bool[] sld;
     Vector2[][] locs;
+    public LayerMask layerMask;
     void Start()
     {
         sld = new bool[4];
@@ -173,7 +175,7 @@ public class director : MonoBehaviour
         {
             do
             {
-                newRoom = (int)Random.Range(0, 5);
+                newRoom = (int)UnityEngine.Random.Range(0, 5);
                 Debug.Log(curRoom + " " + newRoom);
             } while (newRoom == curRoom);
             findLoc(newRoom, a1);
@@ -182,7 +184,7 @@ public class director : MonoBehaviour
         {
             do
             {
-                newRoom = (int)Random.Range(0, 5);
+                newRoom = (int)UnityEngine.Random.Range(0, 5);
                 Debug.Log(curRoom + " " + newRoom);
             } while (newRoom == curRoom);
             findLoc(newRoom, a2);
@@ -191,7 +193,7 @@ public class director : MonoBehaviour
         {
             do
             {
-                newRoom = (int)Random.Range(0, 5);
+                newRoom = (int)UnityEngine.Random.Range(0, 5);
                 Debug.Log(curRoom + " " + newRoom);
             } while (newRoom == curRoom);
             findLoc(newRoom, a3);
@@ -202,11 +204,12 @@ public class director : MonoBehaviour
     {
         float newX, newZ;
         RaycastHit hit;
-        newX = Random.Range((locs[newRoom][0].x), (locs[newRoom][1].x));
-        newZ = Random.Range((locs[newRoom][0].y), (locs[newRoom][1].y));
+        newX = UnityEngine.Random.Range((locs[newRoom][0].x), (locs[newRoom][1].x));
+        newZ = UnityEngine.Random.Range((locs[newRoom][0].y), (locs[newRoom][1].y));
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(newX, 0, newZ));
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.Log(hit.transform.name);
             goal.transform.localPosition = new Vector3(newX, hit.point.y, newZ);
 
         }
